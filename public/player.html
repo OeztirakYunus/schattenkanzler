@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#120d0a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<title>Schattenkanzler – Controller</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/common.css">
+<link rel="stylesheet" href="/player.css">
+</head>
+<body>
+
+<!-- Beitreten -->
+<section id="joinScreen" class="screen" hidden>
+  <div class="join-logo"><span>SCHATTEN</span><b>KANZLER</b></div>
+  <p class="join-sub">Dein Handy ist dein Controller.<br>Das Spielbrett läuft auf dem Fernseher.</p>
+  <form id="joinForm" autocomplete="off">
+    <label for="nameInput">Dein Name</label>
+    <input id="nameInput" maxlength="16" placeholder="z. B. Anna" enterkeyhint="go">
+    <button type="submit" class="btn primary">Beitreten</button>
+  </form>
+  <p class="fine">Spielprinzip: „Secret Hitler“ (CC BY-NC-SA 4.0)</p>
+</section>
+
+<!-- Spiel -->
+<section id="gameScreen" hidden>
+  <header class="phead">
+    <div class="me">
+      <div class="avatar" id="myAvatar"></div>
+      <div><div class="me-name" id="myName"></div><div class="me-sub" id="mySub"></div></div>
+    </div>
+    <button class="role-btn" id="roleBtn" data-hold>
+      <span class="rb-ico" id="rbIco"></span>
+      <span class="rb-txt">Rolle<br><small>gedrückt halten</small></span>
+    </button>
+  </header>
+  <div class="mini-board" id="miniBoard"></div>
+  <main id="view"></main>
+</section>
+
+<!-- Rolle (nur beim Gedrückthalten sichtbar) -->
+<div id="roleSheet" hidden>
+  <div class="rs-inner">
+    <div id="rsCard"></div>
+    <div id="rsInfo" class="rs-info"></div>
+  </div>
+</div>
+
+<div id="replaced" class="cover" hidden>
+  <div><h2>Auf anderem Gerät geöffnet</h2><p>Dieser Controller wurde auf einem anderen Gerät oder Tab übernommen.</p><button class="btn primary" onclick="location.reload()">Hier wieder übernehmen</button></div>
+</div>
+<div id="offline" class="offline-pill" hidden>Verbindung wird wiederhergestellt…</div>
+<div id="toast" class="toast"></div>
+
+<script src="/net.js"></script>
+<script src="/icons.js"></script>
+<script src="/sound.js"></script>
+<script src="/player.js"></script>
+</body>
+</html>

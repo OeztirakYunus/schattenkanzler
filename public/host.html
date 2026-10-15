@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Schattenkanzler – Spielbrett</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/common.css">
+<link rel="stylesheet" href="/host.css">
+</head>
+<body>
+<div id="bgfx"></div>
+
+<!-- Klick zum Aktivieren des Sounds -->
+<div id="audioGate">
+  <div class="gate-box">
+    <div class="gate-logo">SCHATTEN<span>KANZLER</span></div>
+    <div class="gate-hint">Klicke oder drücke eine Taste, um Sound &amp; Musik zu aktivieren</div>
+    <button id="gateBtn">Los geht's</button>
+    <button id="gateSilent" class="link">ohne Ton fortfahren</button>
+  </div>
+</div>
+
+<!-- ============ LOBBY ============ -->
+<section id="lobby" hidden>
+  <div class="lobby-left">
+    <div class="logo"><span class="logo-top">SCHATTEN</span><span class="logo-main">KANZLER</span><span class="logo-tag">Das Partyspiel der geheimen Rollen · Deutschland 1932</span></div>
+    <div class="join-box">
+      <div class="qr-wrap" id="qr"></div>
+      <div class="join-text">
+        <div class="jt-small">Mit dem Handy beitreten</div>
+        <div class="jt-step">1. QR-Code scannen oder öffnen:</div>
+        <div id="joinUrl" class="jt-url">…</div>
+        <div class="jt-step">2. Namen eingeben – fertig!</div>
+        <div class="jt-note">Alle Geräte müssen im selben WLAN sein.</div>
+      </div>
+    </div>
+  </div>
+  <div class="lobby-right">
+    <div class="lobby-head">
+      <h2>Spieler <span id="lobbyCount">0/10</span></h2>
+      <div id="roleSplit" class="role-split"></div>
+    </div>
+    <div id="lobbyPlayers" class="lobby-players"></div>
+    <div class="lobby-actions">
+      <button id="startBtn" class="big-btn" disabled>Spiel starten</button>
+      <div id="startHint" class="start-hint"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SPIEL ============ -->
+<section id="game" hidden>
+  <header class="topbar">
+    <div class="mini-logo">SCHATTEN<b>KANZLER</b></div>
+    <div class="headline-wrap">
+      <div id="headline" class="headline">…</div>
+      <div id="subline" class="subline"></div>
+    </div>
+    <div class="round-tag" id="roundTag"></div>
+  </header>
+
+  <main class="table">
+    <div class="piles">
+      <div class="pile" id="drawPile"><div class="pile-stack"></div><div class="pile-label">Nachziehstapel</div><div class="pile-count" id="deckCount">0</div></div>
+      <div class="pile" id="discardPile"><div class="pile-stack discard"></div><div class="pile-label">Ablage</div><div class="pile-count" id="discardCount">0</div></div>
+    </div>
+
+    <div class="boards">
+      <div class="board fas-board">
+        <div class="board-title"><span>Faschistisch</span></div>
+        <div class="slots" id="fasSlots"></div>
+        <div class="board-foot" id="fasFoot"></div>
+      </div>
+      <div class="board lib-board">
+        <div class="board-title"><span>Liberal</span></div>
+        <div class="slots" id="libSlots"></div>
+        <div class="tracker">
+          <div class="tracker-label">Wahltracker</div>
+          <div class="tracker-track" id="trackerTrack">
+            <div class="tr-dot" data-i="0"></div><div class="tr-dot" data-i="1"></div><div class="tr-dot" data-i="2"></div><div class="tr-dot chaos" data-i="3"><span>Chaos</span></div>
+            <div class="tr-token" id="trackerToken"></div>
+          </div>
+          <div class="tracker-note">Drei gescheiterte Regierungen ⇒ das oberste Gesetz tritt in Kraft</div>
+        </div>
+      </div>
+    </div>
+
+    <aside class="logbox">
+      <div class="log-title">Protokoll</div>
+      <ul id="log"></ul>
+    </aside>
+  </main>
+
+  <footer class="players" id="players"></footer>
+</section>
+
+<!-- Overlays -->
+<div id="fxLayer"></div>
+<div id="banner" class="banner"><div class="banner-inner"><div class="b-kicker"></div><div class="b-title"></div><div class="b-sub"></div></div></div>
+<div id="flash"></div>
+<canvas id="particles"></canvas>
+
+<div id="gameover" hidden>
+  <div class="go-inner">
+    <div class="go-kicker">Spielende</div>
+    <div class="go-title" id="goTitle"></div>
+    <div class="go-reason" id="goReason"></div>
+    <div class="go-roles" id="goRoles"></div>
+    <div class="go-actions"><button id="newGameBtn" class="big-btn">Neues Spiel</button><span class="go-hint">oder auf einem Handy „Nochmal spielen“ drücken</span></div>
+  </div>
+</div>
+
+<div class="controls">
+  <button id="btnSound" title="Soundeffekte"></button>
+  <button id="btnMusic" title="Musik"></button>
+  <button id="btnFull" title="Vollbild"></button>
+  <button id="btnSkip" title="Rollenansicht überspringen" hidden>Weiter ▸</button>
+</div>
+<div id="toast" class="toast"></div>
+
+<script src="/net.js"></script>
+<script src="/icons.js"></script>
+<script src="/qr.js"></script>
+<script src="/sound.js"></script>
+<script src="/host.js"></script>
+</body>
+</html>

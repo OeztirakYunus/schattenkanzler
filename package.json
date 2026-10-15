@@ -1,0 +1,17 @@
+{
+  "name": "schattenkanzler",
+  "version": "1.0.0",
+  "description": "Schattenkanzler – Browser-Partyspiel: Fernseher = Spielbrett, Handys = Controller",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test/bots.js"
+  },
+  "license": "CC-BY-NC-SA-4.0",
+  "engines": {
+    "node": ">=16"
+  },
+  "dependencies": {
+    "ws": "^8.18.0"
+  }
+}
